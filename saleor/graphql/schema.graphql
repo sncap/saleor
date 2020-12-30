@@ -4831,6 +4831,7 @@ input ShippingZipCodeRulesCreateInput {
 input ShippingZipCodeRulesCreateInputRange {
   start: String!
   end: String
+  inclusionType: ZipCodeRuleInclusionTypeEnum
 }
 
 type ShippingZipCodeRulesDelete {
