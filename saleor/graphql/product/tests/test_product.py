@@ -1473,7 +1473,7 @@ def test_products_query_with_filter_attributes(
     second_product.product_type = product_type
     second_product.slug = "second-product"
     second_product.save()
-    associate_attribute_values_to_instance(second_product, attribute, attr_value)
+    associate_attribute_values_to_instance(second_product, attribute, [attr_value])
 
     variables = {
         "filter": {"attributes": [{"slug": attribute.slug, "value": attr_value.slug}]}
@@ -1972,7 +1972,7 @@ def test_get_product_with_sorted_attribute_values(
     )
 
     associate_attribute_values_to_instance(
-        product, product_type_page_reference_attribute, attr_value_2, attr_value_1
+        product, product_type_page_reference_attribute, [attr_value_2, attr_value_1]
     )
 
     product_id = graphene.Node.to_global_id("Product", product.id)
@@ -3898,7 +3898,7 @@ def test_update_product_with_file_attribute_value_new_value_is_not_created(
     attribute_id = graphene.Node.to_global_id("Attribute", file_attribute.pk)
     product_type.product_attributes.add(file_attribute)
     existing_value = file_attribute.values.first()
-    associate_attribute_values_to_instance(product, file_attribute, existing_value)
+    associate_attribute_values_to_instance(product, file_attribute, [existing_value])
 
     values_count = file_attribute.values.count()
 
@@ -4060,7 +4060,7 @@ def test_update_product_with_page_reference_attribute_existing_value(
         slug=f"{product.pk}_{page.pk}",
     )
     associate_attribute_values_to_instance(
-        product, product_type_page_reference_attribute, attr_value
+        product, product_type_page_reference_attribute, [attr_value]
     )
 
     values_count = product_type_page_reference_attribute.values.count()
@@ -4245,7 +4245,7 @@ def test_update_product_with_product_reference_attribute_existing_value(
         slug=f"{product.pk}_{product_ref.pk}",
     )
     associate_attribute_values_to_instance(
-        product, product_type_product_reference_attribute, attr_value
+        product, product_type_product_reference_attribute, [attr_value]
     )
 
     values_count = product_type_product_reference_attribute.values.count()
@@ -4370,7 +4370,7 @@ def test_update_product_change_values_ordering(
     )
 
     associate_attribute_values_to_instance(
-        product, product_type_page_reference_attribute, attr_value_2, attr_value_1
+        product, product_type_page_reference_attribute, [attr_value_2, attr_value_1]
     )
 
     assert list(
